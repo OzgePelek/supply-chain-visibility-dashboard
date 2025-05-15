@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain Sustainability</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="hero">
+        <nav class="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="login" onclick="openLoginModal()">Log In</a></li>
+                <li><a href="#" class="signup" onclick="openSignUpModal()">Sign Up</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <div class="headline">
+                <h1>OPTIMIZE<br>THE SUPPLY CHAIN<br>MAKE THE FUTURE<br>SUSTAINABLE</h1>
+            </div>
+            <div class="description">
+                <p>
+                    Sustainability is not just an environmental responsibility, but a key to long-term business success. 
+                    By optimizing every step of your supply chain, you can reduce costs and minimize environmental impact. 
+                    Use data-driven decisions and smart analytics to make your processes more efficient and sustainable, 
+                    boosting your competitive edge while contributing to a better future.
+                </p>
+                <a href="#learn-more" class="learn-more-btn">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Log In</h2>
+            <form id="loginForm">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <input type="password" name="password" placeholder="Enter your password" required>
+                <button type="submit">Log In</button>
+            </form>
+            <div id="loginMessage"></div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <input type="password" name="password" placeholder="Enter your password" required>
+                <input type="text" name="company_code" placeholder="Enter company code" required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <div id="signupMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function openSignUpModal() {
+            document.getElementById('signupModal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Sign Up Form Submission
+        document.getElementById('signupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            const response = await fetch('signup.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            const messageDiv = document.getElementById('signupMessage');
+            messageDiv.textContent = result.message;
+            messageDiv.style.color = result.type === 'success' ? 'green' : 'red';
+            messageDiv.style.marginTop = '10px';
+            messageDiv.style.padding = '10px';
+            messageDiv.style.borderRadius = '5px';
+            messageDiv.style.backgroundColor = result.type === 'success' ? '#d4edda' : '#f8d7da';
+            messageDiv.style.color = result.type === 'success' ? '#155724' : '#721c24';
+        });
+
+        // Login Form Submission
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            const response = await fetch('login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            const messageDiv = document.getElementById('loginMessage');
+            if (result.type === 'success') {
+                window.location.href = 'dashboard.html'; // Başarılı girişte yönlendirme
+            } else {
+                messageDiv.textContent = result.message;
+                messageDiv.style.color = 'red';
+                messageDiv.style.marginTop = '10px';
+                messageDiv.style.padding = '10px';
+                messageDiv.style.borderRadius = '5px';
+                messageDiv.style.backgroundColor = '#f8d7da';
+                messageDiv.style.color = '#721c24';
+            }
+        });
+    </script>
+</body>
+</html>

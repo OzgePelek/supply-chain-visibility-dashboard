@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+</head>
+
+
+<body>
+    <div class="container-fluid">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <button id="sidebarToggle" class="sidebar-toggle-btn">☰</button>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" data-section="customerOrientedSection">Customer Oriented Approach</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="resourceUtilizationSection">Resource Utilization</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="deliveryOrientedSection">Delivery Oriented Approach</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="productOrientedSection">Product Oriented Approach</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="companyAttributesSection">Company Attributes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="dataManagementSection">Data Management</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="helpCenterSection">Help Center</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="settingsSection">Setting</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-section="signOutSection">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+
+       
+
+        <!-- Main Content -->
+        <main id="mainContent">
+
+                     <!-- Customer Oriented Approach Section -->
+            <section id="customerOrientedSection" class="content-section">
+                <header class="header">
+                    <div class="header-content">
+                        <h1>Customer Oriented Approach</h1>
+                    </div>
+                    <div class="logo">
+                        <span class="circle">OA</span>
+                    </div>
+                </header>
+
+                <div class="container mt-4">
+                    
+                    <!-- Charts Grid -->
+                    <div class="row">
+
+                        <!-- Line Chart (Geniş Grafik) -->
+                        <div class="col-md-8">
+                            <div class="chart-container">
+                                <canvas id="responseTimeChart"></canvas>
+                                <button 
+                                    style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;"
+                                    onclick="toggleDescription('responseTimeChart-desc')">
+                                    <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;">
+                                </button>
+                                <div class="chart-description" id="responseTimeChart-desc" style="display: none;">
+                                    <p>This chart illustrates the average customer response time over a given period. It helps evaluate how quickly customer inquiries and issues are resolved by the company.</p>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Pie Chart (Küçük Grafik) -->
+                        <div class="col-md-4">
+                            <div class="chart-container">
+                                   <canvas id="customerSatisfactionChart"></canvas>
+                                <button 
+                                    style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;"
+                                    onclick="toggleDescription('customerSatisfactionChart-desc')">
+                                    <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;">
+                                </button>
+                                   <div class="chart-description" id="customerSatisfactionChart-desc" style="display: none;">
+                                      <p>This chart illustrates the distribution of customer satisfaction scores. It helps the company identify trends in customer happiness and evaluate areas for improvement.</p>
+                                   </div>
+                             </div>
+                        </div>
+
+                    </div>
+
+                
+                    
+                    
+                    <div class="row">
+                        <!-- Doughnut Chart (Küçük Grafik) -->
+                        <div class="col-md-4">
+                            <div class="chart-container chart-small">
+                                <canvas id="requestFulfillmentChart"></canvas>
+                                <button 
+                                 style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;"
+                                onclick="toggleDescription('requestFulfillmentChart-desc')">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;">
+                                </button>
+                                <div class="chart-description" id="requestFulfillmentChart-desc" style="display: none;">
+                                    <p>This chart shows the fulfillment status of customer requests. It indicates the proportion of fulfilled and unfulfilled requests, helping identify gaps in customer service efficiency.</p>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Bar Chart (Büyük Grafik) -->
+                        <div class="col-md-8">
+                            <div class="chart-container chart-large">
+                                <canvas id="customerRequestAccuracyChart"></canvas>
+                                <button 
+                                style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;"
+                                onclick="toggleDescription('customerRequestAccuracyChart-desc')">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;">
+                                </button>
+                                <div class="chart-description" id="customerRequestAccuracyChart-desc" style="display: none;">
+                                    <p>
+                                        This chart provides insights into the accuracy of understanding customer requests. It categorizes requests as correctly understood or misunderstood, helping assess communication efficiency.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </section>
+
+ <!-- Resource Utilization Section -->
+
+            <section id="resourceUtilizationSection" class="content-section"> 
+                <header class="header">
+                    <div class="header-content">
+                        <h1>Resource Utilization</h1>
+                    </div>
+                    <div class="logo">
+                        <span class="circle">OA</span>
+                    </div>
+                </header>
+
+            <div class="container mt-4">              
+                <!-- İlk Satır -->
+                <div class="row">
+                    <!-- Eco Materials Use Chart (Küçük Grafik) -->
+                    <div class="col-md-4">
+                        <div class="chart-container chart-small">
+                            <canvas id="ecoMaterialsChart"></canvas>
+                            <button
+                                style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;"
+                                onclick="toggleDescription('ecoMaterialsChart-desc')">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;">
+                            </button>
+                            <div class="chart-description" id="ecoMaterialsChart-desc" style="display: none;">
+                                <p>This chart shows the percentage of eco-friendly materials used in production. It helps monitor and enhance the company's commitment to sustainability by reducing environmental impact.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Capacity Utilization Chart (Büyük Grafik) -->
+                    <div class="col-md-8">
+                       <div class="chart-container chart-large">
+                            <canvas id="capacityUtilizationChart"></canvas>
+                            <button
+                                style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;"
+                                onclick="toggleDescription('capacityUtilizationChart-desc')">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;">
+                            </button>
+                            <div class="chart-description" id="capacityUtilizationChart-desc" style="display: none;">
+                                 <p>This chart illustrates the percentage of capacity utilized in production processes. It helps track efficiency and identifies opportunities for better resource allocation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                 </div>
+
+                <!-- İkinci Satır -->
+                <div class="row">
+                   <!-- Waste Reuse Chart (Büyük Grafik) -->
+                   <div class="col-md-8">
+                    <div class="chart-container chart-large">
+                        <canvas id="wasteReuseChart"></canvas>
+                        <button
+                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                            <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;"
+                             onclick="toggleDescription('wasteReuseChart-desc')">
+                        </button>
+                        <div class="chart-description" id="wasteReuseChart-desc" style="display: none;">
+                            <p>This chart displays the percentage of waste materials that are reused in production processes. It helps assess the company's efforts in waste management and sustainability.</p>
+                        </div>
+                     </div>
+                 </div>
+                
+                   <!-- Rare Products Reduction Chart (Küçük Grafik) -->
+                    <div class="col-md-4">
+                     <div class="chart-container chart-small">
+                        <canvas id="rareProductsChart"></canvas>
+                        <button
+                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                            <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                            onclick="toggleDescription('rareProductsChart-desc')">
+                        </button>
+                        <div class="chart-description" id="rareProductsChart-desc" style="display: none;">
+                            <p>This chart highlights the reduction in the usage of rare and limited availability products. It supports monitoring efforts to conserve scarce resources and promote sustainability.</p>
+                        </div>
+                     </div>
+                </div>
+                
+                </div>
+                <!-- Üçüncü Satır -->
+                <div class="row">
+                    <!-- Recyclable Packaging Use Chart (Tam Genişlik Grafik) -->
+                    <div class="col-md-12">
+                        <div class="chart-container chart-large">
+                            <canvas id="recyclablePackagingChart"></canvas>
+                            <button
+                                style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                                onclick="toggleDescription('recyclablePackagingChart-desc')">
+                            </button>
+                            <div class="chart-description" id="recyclablePackagingChart-desc" style="display: none;">
+                                <p>This chart provides insights into the use of recyclable packaging materials. It helps measure the company's commitment to reducing waste and promoting environmental sustainability.</p>
+                            </div>        
+                         </div>
+                    </div>
+                </div>
+
+               <!-- firma kaynak kullanımı-->
+
+              <div class="row">
+                <!-- İlk Satır: Waste Reduction Büyük, EMS Küçük -->
+                <div class="col-md-6">
+                    <div class="chart-container">
+                        <canvas id="wasteReductionChart"></canvas>
+                        <button
+                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                            <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                            onclick="toggleDescription('wasteReductionChart-desc')">
+                        </button>
+                        <div class="chart-description" id="wasteReductionChart-desc" style="display: none;">
+                             <p> This chart highlights the company's efforts to reduce waste over time. It tracks the amount of waste minimized through various initiatives, showcasing progress toward sustainability goals.</p>
+                        </div> 
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-container">
+                        <canvas id="emsExistenceChart"></canvas>
+                        <button
+                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                            <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                            onclick="toggleDescription('emsExistenceChart-desc')">
+                        </button>
+                        <div class="chart-description" id="emsExistenceChart-desc" style="display: none;">
+                             <p>This chart visualizes the presence of Environmental Management Systems (EMS) over time. It helps monitor the company's compliance with environmental standards and sustainability practices.</p>
+                        </div>
+                    </div>
+                </div>
+             </div>
+                <!-- İkinci Satır: Renewable Energy ve Water Consumption Eşit -->
+             <div class="row">
+                <div class="col-md-6">
+                    <div class="chart-container medium-chart">
+                        <canvas id="renewableEnergyChart"></canvas>
+                        <button
+                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                            <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                            onclick="toggleDescription('renewableEnergyChart-desc')">
+                        </button>
+                        <div class="chart-description" id="renewableEnergyChart-desc" style="display: none;">
+                             <p><p>This chart illustrates the percentage of renewable energy usage over time. It highlights the company's efforts to transition to sustainable energy sources and reduce dependency on non-renewable resources.</p>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-container medium-chart">
+                        <canvas id="waterConsumptionChart"></canvas>
+                        <button
+                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                            <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                            onclick="toggleDescription('waterConsumptionChart-desc')">
+                        </button>
+                        <div class="chart-description" id="waterConsumptionChart-desc" style="display: none;">
+                            <p>This chart tracks water consumption over time, measured in cubic meters (m³). It helps monitor resource usage efficiency and identify trends in water-saving initiatives.</p>
+                        </div>
+                    </div>
+                </div>
+             </div>
+            
+             <!-- Üçüncü Satır: Eco Innovations ve GHG Emissions Eşit -->  
+             <div class="row">
+                
+                <div class="col-md-6">
+                    <div class="chart-container medium-chart">
+                        <canvas id="ecoInnovationsChart"></canvas>
+                        <button
+                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                            <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                            onclick="toggleDescription('ecoInnovationsChart-desc')">
+                        </button>
+                        <div class="chart-description" id="ecoInnovationsChart-desc" style="display: none;">
+                            <p>This chart displays the count of eco-innovation initiatives over the years. It reflects the company's commitment to sustainability through innovative solutions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-container medium-chart">
+                        <canvas id="ghgEmissionsChart"></canvas>
+                        <button
+                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                            <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                            onclick="toggleDescription('ghgEmissionsChart-desc')">
+                        </button>
+                        <div class="chart-description" id="ghgEmissionsChart-desc" style="display: none;">
+                            <p>This chart shows the reduction in greenhouse gas (GHG) emissions over time, measured in tons of CO₂. It represents the company's progress in minimizing its carbon footprint and environmental impact.</p>
+                        </div>
+                    </div>
+                </div>
+            
+              </div>
+            
+            </div>
+            </section>   
+
+
+   
+            <!-- Delivery Oriented Approach Section -->
+            <section id="deliveryOrientedSection" class="content-section">
+                <header class="header">
+                    <div class="header-content">
+                        <h1>Delivery Oriented Approach</h1>
+                    </div>
+                    <div class="logo">
+                        <span class="circle">OA</span>
+                    </div>
+                </header>
+
+
+                <div class="container mt-4">
+                    <div class="row">
+                        <!-- Pie Chart: Delivery Status -->
+                        <div class="col-md-4">
+                            <div class="chart-container">
+                                <canvas id="deliveryPieChart"></canvas>
+                                <button
+                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                            <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                            onclick="toggleDescription('deliveryPieChart-desc')">
+                        </button>
+                        <div class="chart-description" id="deliveryPieChart-desc" style="display: none;">
+                            <p>This chart visualizes the timeliness of deliveries, categorizing them as 'On-Time,' 'Late,' or 'Unknown.' It provides a quick overview of delivery performance and highlights areas needing improvement.</p>
+                        </div>
+                            </div>
+                        </div>
+                
+                        <!-- Bar Chart: Distribution Network -->
+                        <div class="col-md-8">
+                            <div class="chart-container">
+                                <canvas id="distributionBarChart"></canvas>
+                                <button
+                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                            <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                            onclick="toggleDescription('distributionBarChart-desc')">
+                        </button>
+                        <div class="chart-description" id="distributionBarChart-desc" style="display: none;">
+                            <p>This chart illustrates the distribution network's performance across various regions. It helps analyze coverage and operational efficiency in different locations.</p>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="row">
+                    <!-- Bar Chart: Tracking Status -->
+                    <div class="col-md-8">
+                        <div class="chart-container">
+                            <canvas id="flowLineChart"></canvas>
+                            <button
+                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                            <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                            onclick="toggleDescription('flowLineChart-desc')">
+                        </button>
+                        <div class="chart-description" id="flowLineChart-desc" style="display: none;">
+                            <p>This chart tracks the flow of products over time, providing insights into the overall process duration and potential bottlenecks.</p>
+                        </div>
+                        </div>
+                    </div>
+                   <!-- Bar Chart: On-Time Deliveries -->
+                    <div class="col-md-4">
+                        <div class="chart-container">
+                            <canvas id="onTimeBarChart"></canvas>
+                            <button
+                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                            <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                            onclick="toggleDescription('onTimeBarChart-desc')">
+                        </button>
+                        <div class="chart-description" id="onTimeBarChart-desc" style="display: none;">
+                            <p>This chart displays the percentage of orders delivered on time compared to total orders. It highlights the company's ability to meet delivery commitments.</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                        <!-- Line Chart: Flow Days -->
+                      <div class="col-md-6">
+                        <div class="chart-container">
+                            <canvas id="trackingStatusBarChart"></canvas>
+                            <button
+                            style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                            <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                            onclick="toggleDescription('trackingStatusBarChart-desc')">
+                        </button>
+                        <div class="chart-description" id="trackingStatusBarChart-desc" style="display: none;">
+                            <p>This chart represents the current tracking status of orders, categorizing them as 'In Progress,' 'Delivered,' or 'Cancelled.' It offers a real-time overview of order statuses.</p>
+                        </div>
+                        </div>  
+                    </div> 
+                        <!-- Stacked Bar Chart: Priority -->
+                    <div class="col-md-6">
+                        <div class="chart-container">
+                             <canvas id="priorityStackedBarChart"></canvas>
+                             <button
+                             style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                             <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                             onclick="toggleDescription('priorityStackedBarChart-desc')">
+                             </button>
+                            <div class="chart-description" id="priorityStackedBarChart-desc" style="display: none;">
+                               <p>This chart shows the distribution of prioritized and non-prioritized orders over time. It helps assess how effectively urgent orders are being managed.</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+
+            
+            <!-- Product Oriented Approach Section -->
+
+            
+            <section id="productOrientedSection" class="content-section">
+                <header class="header">
+                    <div class="header-content">
+                        <h1>Product Oriented Approach</h1>
+                    </div>
+                    <div class="logo">
+                        <span class="circle">OA</span>
+                    </div>
+                </header>
+
+
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Total Product</h3>
+                        <h1 id="totalProductSum">$ 0</h1>
+                        <p id="changePercentage"></p>
+                    </div>
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i> <!-- İkon için Font Awesome kullanıldı -->
+                    </div>
+                </div>
+                
+            
+                <div class="container mt-4">
+                    <div class="row">
+                        <!-- Total Product, Waste Rate, and Total Waste Chart -->
+                        <div class="col-md-6">
+                            <div class="chart-container">
+                                <canvas id="productWasteChart"></canvas>
+                                <button
+                                style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                                onclick="toggleDescription('productWasteChart-desc')">
+                            </button>
+                            <div class="chart-description" id="productWasteChart-desc" style="display: none;">
+                                <p>This chart shows the amount of waste generated during product manufacturing. It helps identify inefficiencies in the production process and highlights opportunities to reduce waste and improve sustainability.</p>
+                            </div>
+                            </div>
+                        </div>
+                            <!-- Sales Estimation, Actual Sales, and Estimation Accuracy Chart -->
+                        <div class="col-md-6">
+                            <div class="chart-container">
+                                <canvas id="salesAccuracyChart"></canvas>
+                                <button
+                                style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                                onclick="toggleDescription('salesAccuracyChart-desc')">
+                            </button>
+                            <div class="chart-description" id="salesAccuracyChart-desc" style="display: none;">
+                                <p>This chart compares sales estimations with actual sales to evaluate the accuracy of demand forecasting. It helps improve planning and minimize discrepancies between predictions and real outcomes.</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                        
+                    <div class="row">
+                        <!-- Produced Meter, Planned Meter, and Meter Compatibility Chart -->
+                        <div class="col-md-12">
+                            <div class="chart-container">
+                                <canvas id="meterCompatibilityChart"></canvas>
+                                <button
+                                style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                                onclick="toggleDescription('meterCompatibilityChart-desc')">
+                            </button>
+                            <div class="chart-description" id="meterCompatibilityChart-desc" style="display: none;">
+                                <p>This chart illustrates the compatibility of product measurements with planned specifications. It highlights the consistency in production quality and adherence to standards.</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            
+            
+
+            <!-- Company Attributes Section -->
+            <section id="companyAttributesSection" class="content-section">
+                <header class="header">
+                    <div class="header-content">
+                        <h1>Company Attributes</h1>
+                    </div>
+                    <div class="logo">
+                        <span class="circle">OA</span>
+                    </div>
+                </header>
+
+
+                <div class="row g-4">
+                    <!-- Bar Chart: Previous Year vs Current Year Customers -->
+                    <div class="col-md-6">
+                        <div class="chart-container">
+                            <canvas id="previousCurrentCustomersBarChart"></canvas>
+                            <button
+                                style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                                onclick="toggleDescription('previousCurrentCustomersBarChart-desc')">
+                            </button>
+                            <div class="chart-description" id="previousCurrentCustomersBarChart-desc" style="display: none;">
+                                <p>This chart compares the number of customers from the previous year to the current year. It provides insights into customer retention and growth trends over time.</p>
+                            </div>
+
+                        </div>
+                    </div>
+            
+                    <!-- Bar Chart: Integrated Projects and Sustainability Projects -->
+                    <div class="col-md-6">
+                        <div class="chart-container">
+                            <canvas id="sustainabilityProjectsBarChart"></canvas>
+                            <button
+                                style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                                onclick="toggleDescription('sustainabilityProjectsBarChart-desc')">
+                            </button>
+                            <div class="chart-description" id="sustainabilityProjectsBarChart-desc" style="display: none;">
+                                <p>This chart displays the number of integrated projects alongside sustainability projects, highlighting the organization's efforts in sustainable development and innovation.</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Line and Bar Chart: Investment, Returns, and Recovery -->
+                    <div class="col-md-6">
+                        <div class="chart-container">
+                            <canvas id="investmentReturnsChart"></canvas>
+                            <button
+                                style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                                onclick="toggleDescription('investmentReturnsChart-desc')">
+                            </button>
+                            <div class="chart-description" id="investmentReturnsChart-desc" style="display: none;">
+                                <p>This chart showcases the investment in sustainability, the returns generated from those investments, and the overall recovery rate. It provides a comprehensive view of financial efficiency and sustainability impacts.</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Combined Bar and Line Chart: R&D Employees and Budget -->
+                    <div class="col-md-6">
+                        <div class="chart-container">
+                            <canvas id="rdEmployeesBudgetChart"></canvas>
+                            <button
+                                style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                                onclick="toggleDescription('rdEmployeesBudgetChart-desc')">
+                            </button>
+                            <div class="chart-description" id="rdEmployeesBudgetChart-desc" style="display: none;">
+                                <p>This chart combines the number of R&D employees and the allocated budget, demonstrating the organization's focus on research and development initiatives over time.</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Scatter Plot: R&D Budget vs Accepted Projects -->
+                    <div class="col-md-6">
+                        <div class="chart-container">
+                            <canvas id="rdBudgetProjectsScatter"></canvas>
+                            <button
+                                style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                                onclick="toggleDescription('rdBudgetProjectsScatter-desc')">
+                            </button>
+                            <div class="chart-description" id="rdBudgetProjectsScatter-desc" style="display: none;">
+                                <p>This scatter plot compares the R&D budget with the number of accepted projects, helping evaluate the efficiency of resource allocation in research and development activities.</p>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Bar Chart: On-Time vs Total Orders -->
+                    <div class="col-md-6">
+                        <div class="chart-container">
+                            <canvas id="ordersComparisonBarChart"></canvas>
+                            <button
+                                style="background: none; border: none; padding: 0; margin: 0; cursor: pointer;">
+                                <img src="images/information.png" alt="Information" style="width: 20px; height: 20px; border-radius: 50%;" 
+                                onclick="toggleDescription('ordersComparisonBarChart-desc')">
+                            </button>
+                            <div class="chart-description" id="ordersComparisonBarChart-desc" style="display: none;">
+                                <p>This chart compares the number of on-time orders with the total number of orders. It highlights the efficiency and reliability of the delivery process.</p>
+                            </div>
+                        </div>
+                    </div>
+                
+            </section>
+
+            <!-- Help Center Section -->
+            <section id="helpCenterSection" class="content-section" style="display: none;">
+                <header class="header">
+                    <div class="header-content">
+                        <h1>Help Center</h1>
+                    </div>
+                    <div class="logo">
+                        <span class="circle">OA</span>
+                    </div>
+                </header>
+
+
+                <div class="container mt-4">
+                    <p>Help Center content goes here...</p>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settingsSection" class="content-section" style="display: none;">
+                <header class="header">
+                    <div class="header-content">
+                        <h1>Settings</h1>
+                    </div>
+                    <div class="logo">
+                        <span class="circle">OA</span>
+                    </div>
+                </header>
+
+
+                <div class="container mt-4">
+                    <p>Settings content goes here...</p>
+                </div>
+            </section>
+
+            
+                            <!-- customer data Management -->
+                            <section id="dataManagementSection" class="content-section">
+                                <header class="header">
+                                    <div class="header-content">
+                                        <h1>Data Management</h1>
+                                    </div>
+                                    <div class="logo">
+                                        <span class="circle">OA</span>
+                                    </div>
+                                </header>
+                
+                
+                                <div class="container mt-3">
+                                    <!-- Başlık -->
+                                    <h4 class="text-start mb-2">Customer Oriented</h4>
+                                   
+                                <form method="POST" action="hometest.php">
+                                    <input type="hidden" name="action" id="action" value="">
+                            
+                                    <label for="id">ID (Required for update/delete):</label>
+                                    <input type="number" id="id" name="id" class="form-control" placeholder="Enter ID" required>
+                            
+                                    <label for="musteri_memnuniyeti">Customer Satisfaction (1-10):</label>
+                                    <input type="number" id="musteri_memnuniyeti" name="musteri_memnuniyeti" class="form-control" placeholder="Enter Satisfaction Score">
+                            
+                                    <label for="dogru_anlasilmis_musteri_istekleri">Correctly Understood (1=Yes, 0=No):</label>
+                                    <input type="number" id="dogru_anlasilmis_musteri_istekleri" name="dogru_anlasilmis_musteri_istekleri" class="form-control" placeholder="1=Yes, 0=No">
+                            
+                                    <label for="musteri_isteklerinin_yerine_getirilmesi">Requests Met (1=Yes, 0=No):</label>
+                                    <input type="number" id="musteri_isteklerinin_yerine_getirilmesi" name="musteri_isteklerinin_yerine_getirilmesi" class="form-control" placeholder="1=Yes, 0=No">
+                            
+                                    <label for="musteri_sorgu_cevap_suresi">Response Time (minutes):</label>
+                                    <input type="number" step="0.01" id="musteri_sorgu_cevap_suresi" name="musteri_sorgu_cevap_suresi" class="form-control" placeholder="Enter Response Time">
+                
+                                    <div class="form-actions mt-3">
+                                    <button type="submit" class="btn btn-outline-primary"onclick="setAction('add')">Add Data</button>
+                                    <button type="submit" class="btn btn-outline-success"onclick="setAction('update')">Update Data</button>
+                                    <button type="submit" class="btn btn-outline-danger"onclick="setAction('delete')">Delete Data</button>
+                                </div>
+                                </form>
+                            </div>
+                
+                                <script>
+                                    function setAction(action) {
+                                        const actionInput = document.getElementById('action');
+                                        if (actionInput) {
+                                            actionInput.value = action; // "action" alanına doğru değeri yaz
+                                        }
+                                
+                                        // Eğer "delete" işlemi yapılacaksa, diğer alanları temizle
+                                        if (action === 'delete') {
+                                            document.getElementById('musteri_memnuniyeti').value = '';
+                                            document.getElementById('dogru_anlasilmis_musteri_istekleri').value = '';
+                                            document.getElementById('musteri_isteklerinin_yerine_getirilmesi').value = '';
+                                            document.getElementById('musteri_sorgu_cevap_suresi').value = '';
+                                        }
+                                    }
+                                </script>
+                
+                                <!-- -----------------------kaynak kullanımı data Management---------------- -->
+                             
+                            <div class="container mt-3">
+                                <h4 class="text-start mb-2">Resource Utilization Data Management</h4>
+                
+                                <form method="POST" action="firm_resource.php">
+                                    <input type="hidden" name="action" id="resourceAction" value="">
+                                
+                                    <label for="year" class="form-label">Year</label>
+                                    <input type="number" class="form-control" id="year" name="Year" placeholder="e.g., 2023" required>
+                                
+                                    <label for="renewableEnergyUse" class="form-label">Renewable Energy Use (%)</label>
+                                    <input type="number" step="0.1" class="form-control" id="renewableEnergyUse" name="Renewable_Energy_Use" placeholder="e.g., 88.2">
+                                
+                                    <label for="waterConsumption" class="form-label">Water Consumption (m³)</label>
+                                    <input type="number" class="form-control" id="waterConsumption" name="Water_Consumption" placeholder="e.g., 27397">
+                                
+                                    <label for="ghgEmissionsReduction" class="form-label">GHG Emissions Reduction (tons)</label>
+                                    <input type="number" class="form-control" id="ghgEmissionsReduction" name="GHG_Emissions_Reduction" placeholder="e.g., 244">
+                                
+                                    <label for="wasteReductionEfforts" class="form-label">Waste Reduction Efforts</label>
+                                    <input type="number" class="form-control" id="wasteReductionEfforts" name="Waste_Reduction_Efforts" placeholder="e.g., 20">
+                                
+                                    <label for="emsExistence" class="form-label">EMS Existence (Yes/No)</label>
+                                    <select class="form-control" id="emsExistence" name="EMS_Existence">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                
+                                    <label for="ecoInnovationsCount" class="form-label">Eco Innovations Count</label>
+                                    <input type="number" class="form-control" id="ecoInnovationsCount" name="Eco_Innovations_Count" placeholder="e.g., 7">
+                                
+                                    <div class="form-actions mt-3">
+                                        <button type="submit" class="btn btn-outline-primary" onclick="setResourceAction('add')">Add Data</button>
+                                        <button type="submit" class="btn btn-outline-success" onclick="setResourceAction('update')">Update Data</button>
+                                        <button type="submit" class="btn btn-outline-danger" onclick="setResourceAction('delete')">Delete Data</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <script>
+                
+                function setResourceAction(action) {
+                    const actionInput = document.getElementById('resourceAction');
+                    if (actionInput) {
+                        actionInput.value = action; // "action" alanına doğru değeri yaz
+                    }
+                
+                    if (action === 'delete') {
+                        const yearInput = document.getElementById('year');
+                        if (!yearInput.value) {
+                            alert("Please enter a valid year for deletion.");
+                            return false; // Formu göndermeyi engelle
+                        }
+                
+                        // Diğer alanları temizle
+                        document.getElementById('renewableEnergyUse').value = '';
+                        document.getElementById('waterConsumption').value = '';
+                        document.getElementById('ghgEmissionsReduction').value = '';
+                        document.getElementById('wasteReductionEfforts').value = '';
+                        document.getElementById('emsExistence').value = 'Yes'; // Varsayılan olarak "Yes" seçili
+                        document.getElementById('ecoInnovationsCount').value = '';
+                    }
+                }
+                            </script>
+                            
+                            <div class="container mt-3">
+                                <h4 class="text-start mb-2">Product Resource Utilization Data Management</h4>
+                            
+                                <form method="POST" action="product_resource.php">
+                                    <!-- Action alanı -->
+                                    <input type="hidden" name="action" id="productResourceAction" value="">
+                            
+                                    <!-- Product ID -->
+                                    <label for="productId" class="form-label">Product ID</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="productId" 
+                                        name="Product_ID" 
+                                        placeholder="e.g., PRD0001" 
+                                        maxlength="9" 
+                                        required>
+                            
+                                    <!-- Diğer alanlar (silme işlemi için doldurulması gerekmez) -->
+                                    <label for="capacityUtilization" class="form-label">Capacity Utilization (%)</label>
+                                    <input 
+                                        type="number" 
+                                        step="any" 
+                                        class="form-control" 
+                                        id="capacityUtilization" 
+                                        name="Capacity_Utilization" 
+                                        placeholder="e.g., 68.08">
+                            
+                                    <label for="ecoMaterialsUse" class="form-label">Eco Materials Use (%)</label>
+                                    <input 
+                                        type="number" 
+                                        step="any" 
+                                        class="form-control" 
+                                        id="ecoMaterialsUse" 
+                                        name="Eco_Materials_Use" 
+                                        placeholder="e.g., 51.05">
+                            
+                                    <label for="rareProductsReduction" class="form-label">Rare Products Reduction (%)</label>
+                                    <input 
+                                        type="number" 
+                                        step="any" 
+                                        class="form-control" 
+                                        id="rareProductsReduction" 
+                                        name="Rare_Products_Reduction" 
+                                        placeholder="e.g., 56.78">
+                            
+                                    <label for="wasteReuse" class="form-label">Waste Reuse (%)</label>
+                                    <input 
+                                        type="number" 
+                                        step="any" 
+                                        class="form-control" 
+                                        id="wasteReuse" 
+                                        name="Waste_Reuse" 
+                                        placeholder="e.g., 30.5">
+                            
+                                    <label for="recyclablePackagingUse" class="form-label">Recyclable Packaging Use (%)</label>
+                                    <input 
+                                        type="number" 
+                                        step="any" 
+                                        class="form-control" 
+                                        id="recyclablePackagingUse" 
+                                        name="Recyclable_Packaging_Use" 
+                                        placeholder="e.g., 43.05">
+                            
+                                    <!-- Form Actions -->
+                                    <div class="form-actions mt-3">
+                                        <button type="submit" class="btn btn-outline-primary" onclick="setProductResourceAction('add')">Add Data</button>
+                                        <button type="submit" class="btn btn-outline-success" onclick="setProductResourceAction('update')">Update Data</button>
+                                        <button type="submit" class="btn btn-outline-danger" onclick="setProductResourceAction('delete')">Delete Data</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <script>
+                            function setProductResourceAction(action) {
+                                const actionInput = document.getElementById('productResourceAction');
+                                if (actionInput) {
+                                    actionInput.value = action;
+                                }
+                            
+                                // Eğer silme işlemi ise sadece Product ID gerekli
+                                if (action === 'delete') {
+                                    const productIdInput = document.getElementById('productId');
+                                    if (!productIdInput.value) {
+                                        alert("Please enter a valid Product ID for deletion.");
+                                        return false;
+                                    }
+                            
+                                    // Diğer alanları temizle
+                                    document.getElementById('capacityUtilization').value = '';
+                                    document.getElementById('ecoMaterialsUse').value = '';
+                                    document.getElementById('rareProductsReduction').value = '';
+                                    document.getElementById('wasteReuse').value = '';
+                                    document.getElementById('recyclablePackagingUse').value = '';
+                                }
+                            }
+                            </script>
+                            
+                            <div class="container mt-3">
+                                <h4 class="text-start mb-2">Delivery Oriented Approach Data Management</h4>
+                            
+                                <form method="POST" action="delivery.php">
+                                    <!-- Action belirlemek için gizli bir input -->
+                                    <input type="hidden" name="action" id="deliveryAction" value="">
+                            
+                                    <!-- Order ID -->
+                                    <label for="orderId" class="form-label">Order ID (Required for update/delete):</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="orderId" 
+                                        name="Order_ID" 
+                                        placeholder="e.g., ORD_1" 
+                                        required>
+                            
+                                    <!-- Customer Name -->
+                                    <label for="customerName" class="form-label">Customer Name:</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="customerName" 
+                                        name="Customer_Name" 
+                                        placeholder="e.g., Customer_156">
+                            
+                                    <!-- Order Date -->
+                                    <label for="orderDate" class="form-label">Order Date:</label>
+                                    <input 
+                                        type="date" 
+                                        class="form-control" 
+                                        id="orderDate" 
+                                        name="Order_Date">
+                            
+                                    <!-- Promised Date -->
+                                    <label for="promisedDate" class="form-label">Promised Date:</label>
+                                    <input 
+                                        type="date" 
+                                        class="form-control" 
+                                        id="promisedDate" 
+                                        name="Promised_Date">
+                            
+                                    <!-- Delivery Date -->
+                                    <label for="deliveryDate" class="form-label">Delivery Date:</label>
+                                    <input 
+                                        type="date" 
+                                        class="form-control" 
+                                        id="deliveryDate" 
+                                        name="Delivery_Date">
+                            
+                                    <!-- On Time -->
+                                    <label for="onTime" class="form-label">On Time (Yes/No):</label>
+                                    <select class="form-control" id="onTime" name="On_Time">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                        <option value="Unknown">Unknown</option>
+                                    </select>
+                            
+                                    <!-- Delay Days -->
+                                    <label for="delayDays" class="form-label">Delay Days:</label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        id="delayDays" 
+                                        name="Delay_Days" 
+                                        placeholder="e.g., 3">
+                            
+                                    <!-- Flow Days -->
+                                    <label for="flowDays" class="form-label">Flow Days:</label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        id="flowDays" 
+                                        name="Flow_Days" 
+                                        placeholder="e.g., 14"> 
+                            
+                                    <!-- Urgency Status -->
+                                    <label for="urgencyStatus" class="form-label">Urgency Status (Yes/No):</label>
+                                    <select class="form-control" id="urgencyStatus" name="Urgency_Status">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                            
+                                    <!-- Priority -->
+                                    <label for="priority" class="form-label">Priority (Yes/No):</label>
+                                    <select class="form-control" id="priority" name="Priority">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                            
+                                    <!-- Distribution Network -->
+                                    <label for="distributionNetwork" class="form-label">Distribution Network:</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="distributionNetwork" 
+                                        name="Distribution_Network" 
+                                        placeholder="e.g., Samsun, Adana, İstanbul, Ankara, İzmir, Gaziantep, Erzurum">
+                            
+                                    <!-- Tracking Status -->
+                                    <label for="trackingStatus" class="form-label">Tracking Status:</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="trackingStatus" 
+                                        name="Tracking_Status" 
+                                        placeholder="e.g., In Progress, Delivered, Cancelled">
+                            
+                                    <!-- Form Actions -->
+                                    <div class="form-actions mt-3">
+                                        <button type="submit" class="btn btn-outline-primary" onclick="setDeliveryAction('add')">Add Data</button>
+                                        <button type="submit" class="btn btn-outline-success" onclick="setDeliveryAction('update')">Update Data</button>
+                                        <button type="submit" class="btn btn-outline-danger" onclick="setDeliveryAction('delete')">Delete Data</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <script>
+                            function setDeliveryAction(action) {
+                                const actionInput = document.getElementById('deliveryAction');
+                                if (actionInput) {
+                                    actionInput.value = action;
+                                }
+                            
+                                // Eğer silme işlemi ise sadece Order ID gerekli
+                                if (action === 'delete') {
+                                    const orderIdInput = document.getElementById('orderId');
+                                    if (!orderIdInput.value) {
+                                        alert("Please enter a valid Order ID for deletion.");
+                                        return false;
+                                    }
+                            
+                                    // Diğer alanları temizle
+                                    document.getElementById('customerName').value = '';
+                                    document.getElementById('orderDate').value = '';
+                                    document.getElementById('promisedDate').value = '';
+                                    document.getElementById('deliveryDate').value = '';
+                                    document.getElementById('onTime').value = 'Unknown';
+                                    document.getElementById('delayDays').value = '';
+                                    document.getElementById('flowDays').value = '';
+                                    document.getElementById('urgencyStatus').value = 'No';
+                                    document.getElementById('priority').value = 'No';
+                                    document.getElementById('distributionNetwork').value = '';
+                                    document.getElementById('trackingStatus').value = '';
+                                }
+                            }
+                            </script>
+                            
+                            <div class="container mt-3">
+                                <h4 class="text-start mb-2">Product Oriented Approach Data Management</h4>
+                            
+                                <form method="POST" action="product_focus_approach.php">
+                                    <!-- Action belirlemek için gizli bir input -->
+                                    <input type="hidden" name="action" id="productAction" value="">
+                            
+                                    <!-- Product ID -->
+                                    <label for="productId" class="form-label">Product ID (Required for update/delete):</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="productId" 
+                                        name="Product_ID" 
+                                        placeholder="e.g., 1" 
+                                        required>
+                            
+                                    <!-- Product Group -->
+                                    <label for="productGroup" class="form-label">Product Group:</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="productGroup" 
+                                        name="Product_Group" 
+                                        placeholder="e.g., Group A">
+                            
+                                    <!-- Total Product -->
+                                    <label for="totalProduct" class="form-label">Total Product:</label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        id="totalProduct" 
+                                        name="Total_Product" 
+                                        placeholder="e.g., 700">
+                            
+                                    <!-- Total Waste -->
+                                    <label for="totalWaste" class="form-label">Total Waste:</label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        id="totalWaste" 
+                                        name="Total_Waste" 
+                                        placeholder="e.g., 35">
+                            
+                                    <!-- Sales Estimation -->
+                                    <label for="salesEstimation" class="form-label">Sales Estimation:</label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        id="salesEstimation" 
+                                        name="Sales_Estimation" 
+                                        placeholder="e.g., 900">
+                            
+                                    <!-- Actual Sales -->
+                                    <label for="actualSales" class="form-label">Actual Sales:</label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        id="actualSales" 
+                                        name="Actual_Sales" 
+                                        placeholder="e.g., 600">
+                            
+                                    <!-- Second Quality Count -->
+                                    <label for="secondQualityCount" class="form-label">Second Quality Count:</label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        step="any"
+                                        id="secondQualityCount" 
+                                        name="Second_Quality_Count" 
+                                        placeholder="e.g., 13">
+                            
+                                    <!-- Produced Meter -->
+                                    <label for="producedMeter" class="form-label">Produced Meter:</label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        id="producedMeter" 
+                                        step="any"
+                                        name="Produced_Meter" 
+                                        placeholder="e.g., 600">
+                            
+                                    <!-- Planned Meter -->
+                                    <label for="plannedMeter" class="form-label">Planned Meter:</label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        id="plannedMeter" 
+                                        name="Planned_Meter" 
+                                        step="any"
+                                        placeholder="e.g., 1000">
+                            
+                                    <!-- Waste Rate -->
+                                    <label for="wasteRate" class="form-label">Waste Rate (%):</label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        id="wasteRate" 
+                                        step="any"
+                                        name="Waste_Rate" 
+                                        placeholder="e.g., 5.00">
+                            
+                                    <!-- Estimation Accuracy -->
+                                    <label for="estimationAccuracy" class="form-label">Estimation Accuracy (%):</label>
+                                    <input 
+                                        type="number" 
+                                        step="any"
+                                        class="form-control" 
+                                        id="estimationAccuracy" 
+                                        name="Estimation_Accuracy" 
+                                        placeholder="e.g., 66.67">
+                            
+                                    <!-- Meter Compatibility -->
+                                    <label for="meterCompatibility" class="form-label">Meter Compatibility (%):</label>
+                                    <input 
+                                        type="number" 
+                                        step="any"
+                                        class="form-control" 
+                                        id="meterCompatibility" 
+                                        name="Meter_Compatibility" 
+                                        placeholder="e.g., 60.00">
+                            
+                                    <div class="form-actions mt-3">
+                                        <button type="submit" class="btn btn-outline-primary" onclick="setProductAction('add')">Add Data</button>
+                                        <button type="submit" class="btn btn-outline-success" onclick="setProductAction('update')">Update Data</button>
+                                        <button type="submit" class="btn btn-outline-danger" onclick="setProductAction('delete')">Delete Data</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <script>
+                                function setProductAction(action) {
+                                    document.getElementById('productAction').value = action;
+                            
+                                    if (action === 'delete') {
+                                        const productIdInput = document.getElementById('productId');
+                                        if (!productIdInput.value) {
+                                            alert("Please enter a valid Product ID for deletion.");
+                                            return false;
+                                        }
+                            
+                                        // Diğer alanları temizle
+                                        document.getElementById('productGroup').value = '';
+                                        document.getElementById('totalProduct').value = '';
+                                        document.getElementById('totalWaste').value = '';
+                                        document.getElementById('salesEstimation').value = '';
+                                        document.getElementById('actualSales').value = '';
+                                        document.getElementById('secondQualityCount').value = '';
+                                        document.getElementById('producedMeter').value = '';
+                                        document.getElementById('plannedMeter').value = '';
+                                        document.getElementById('wasteRate').value = '';
+                                        document.getElementById('estimationAccuracy').value = '';
+                                        document.getElementById('meterCompatibility').value = '';
+                                    }
+                                }
+                            </script>
+                            
+                            <div class="container mt-3">
+                                <h4 class="text-start mb-2">Company Attributes Data Management</h4>
+                                <form method="POST" action="company_attribute.php">
+                                    <input type="hidden" name="action" id="kpiAction" value="">
+                            
+                                    <!-- Year -->
+                                    <label for="year" class="form-label">Year (Required for update/delete):</label>
+                                    <input type="number" class="form-control" id="year" name="Year" placeholder="e.g., 2023" required>
+                            
+                                    <!-- Previous Year Customers -->
+                                    <label for="previousYearCustomers" class="form-label">Previous Year Customers:</label>
+                                    <input type="number" class="form-control" id="previousYearCustomers" name="previous_year_customers" placeholder="e.g., 1000">
+                            
+                                    <!-- Current Year Customers -->
+                                    <label for="currentYearCustomers" class="form-label">Current Year Customers:</label>
+                                    <input type="number" class="form-control" id="currentYearCustomers" name="current_year_customers" placeholder="e.g., 1100">
+                            
+                                    <!-- Retention Rate -->
+                                    <!-- <label for="retentionRate" class="form-label">Retention Rate:</label>
+                                    <input type="number" class="form-control" id="retentionRate" name="retention_rate" placeholder="e.g., 95.5"> -->
+                            
+                                    <!-- Integrated Projects -->
+                                    <label for="integratedProjects" class="form-label">Integrated Projects:</label>
+                                    <input type="number" class="form-control" id="integratedProjects" name="integrated_projects" placeholder="e.g., 20">
+                            
+                                    <!-- Total Sustainability Projects -->
+                                    <label for="totalSustainabilityProjects" class="form-label">Total Sustainability Projects:</label>
+                                    <input type="number" class="form-control" id="totalSustainabilityProjects" name="total_sustainability_projects" placeholder="e.g., 25">
+                            
+                                    <!-- Sustainability Integration Rate -->
+                                    <!-- <label for="sustainabilityIntegrationRate" class="form-label">Sustainability Integration Rate:</label>
+                                    <input type="number" class="form-control" id="sustainabilityIntegrationRate" name="sustainability_integration_rate" placeholder="e.g., 85.5">
+                             -->
+                                    <!-- Investment in Sustainability -->
+                                    <label for="investmentInSustainability" class="form-label">Investment in Sustainability:</label>
+                                    <input type="number" step="0.01" class="form-control" id="investmentInSustainability" name="investment_in_sustainability" placeholder="e.g., 50000.00">
+                            
+                                    <!-- Returns from Investment -->
+                                    <label for="returnsFromInvestment" class="form-label">Returns from Investment:</label>
+                                    <input type="number" step="0.01" class="form-control" id="returnsFromInvestment" name="returns_from_investment" placeholder="e.g., 60000.00">
+                            
+                                    <!-- Investment Recovery -->
+                                    <!-- <label for="investmentRecovery" class="form-label">Investment Recovery:</label>
+                                    <input type="number" step="0.01" class="form-control" id="investmentRecovery" name="investment_recovery" placeholder="e.g., 120.5">
+                             -->
+                                    <!-- R&D Employees -->
+                                    <label for="rdEmployees" class="form-label">R&D Employees:</label>
+                                    <input type="number" class="form-control" id="rdEmployees" name="rd_employees" placeholder="e.g., 50">
+                            
+                                    <!-- R&D Budget -->
+                                    <label for="rdBudget" class="form-label">R&D Budget:</label>
+                                    <input type="number" step="0.01" class="form-control" id="rdBudget" name="rd_budget" placeholder="e.g., 300.00">
+                            
+                                    <!-- R&D Accepted Projects -->
+                                    <label for="rdAcceptedProjects" class="form-label">R&D Accepted Projects:</label>
+                                    <input type="number" class="form-control" id="rdAcceptedProjects" name="rd_accepted_projects" placeholder="e.g., 15">
+                            
+                                    <!-- On Time and Successful Orders -->
+                                    <label for="onTimeAndSuccessfulOrders" class="form-label">On Time and Successful Orders:</label>
+                                    <input type="number" class="form-control" id="onTimeAndSuccessfulOrders" name="on_time_and_successful_orders" placeholder="e.g., 600">
+                            
+                                    <!-- Total Orders -->
+                                    <label for="totalOrders" class="form-label">Total Orders:</label>
+                                    <input type="number" class="form-control" id="totalOrders" name="total_orders" placeholder="e.g., 700">
+                            
+                                    <!-- Form Actions -->
+                                    <div class="form-actions mt-3">
+                                        <button type="submit" class="btn btn-outline-primary" onclick="setKpiAction('add')">Add Data</button>
+                                        <button type="submit" class="btn btn-outline-success" onclick="setKpiAction('update')">Update Data</button>
+                                        <button type="submit" class="btn btn-outline-danger" onclick="setKpiAction('delete')">Delete Data</button>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <script>
+                            function setKpiAction(action) {
+                                const actionInput = document.getElementById('kpiAction');
+                                if (actionInput) {
+                                    actionInput.value = action;
+                                }
+                            
+                                if (action === 'delete') {
+                                    const yearInput = document.getElementById('year');
+                                    if (!yearInput.value) {
+                                        alert("Please enter a valid Year for deletion.");
+                                        return false;
+                                    }
+                            
+                                    // Clear other fields
+                                    document.getElementById('previousYearCustomers').value = '';
+                                    document.getElementById('currentYearCustomers').value = '';
+                                   //  document.getElementById('retentionRate').value = '';
+                                    document.getElementById('integratedProjects').value = '';
+                                    document.getElementById('totalSustainabilityProjects').value = '';
+                                    // document.getElementById('sustainabilityIntegrationRate').value = '';
+                                    document.getElementById('investmentInSustainability').value = '';
+                                    document.getElementById('returnsFromInvestment').value = '';
+                                    // document.getElementById('investmentRecovery').value = '';
+                                    document.getElementById('rdEmployees').value = '';
+                                    document.getElementById('rdBudget').value = '';
+                                    document.getElementById('rdAcceptedProjects').value = '';
+                                    document.getElementById('onTimeAndSuccessfulOrders').value = '';
+                                    document.getElementById('totalOrders').value = '';
+                                }
+                            }
+                            </script>
+                        </section>
+        </main>
+    </div>
+    
+
+    <script src="hometest.js" defer></script>
+    <script src="resourceUtilization.js" defer></script>
+    <script src="delivery.js" defer></script>
+    <script src="company_attribute.js" defer></script>
+    <script src="product_oriented.js" defer></script>
+
+    <script>
+        function toggleDescription(descriptionId) {
+            const description = document.getElementById(descriptionId);
+            if (description) {
+                description.style.display = description.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+    </script>
+   
+</body>
+</html>

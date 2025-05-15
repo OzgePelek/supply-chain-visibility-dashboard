@@ -1,0 +1,504 @@
+/* Genel Stil Ayarları */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f8f8f8 !important; 
+}
+
+/* Skor Kutusu */
+.score-box {
+    width: 150px;
+    height: 150px;
+    background-color: #9f9ada;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 10px;
+    margin: 10px auto;
+}
+
+/* Üst Header Alanı */
+.header {
+    position: relative;
+    height: 100px; /* Header yüksekliği */
+    background-color: #ffffff; /* Arka plan rengi */
+    border-radius: 0px; /* Köşeleri yuvarlama */
+    margin-bottom: 10px; /* Header ile içerik arası boşluk */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center; /* Dikeyde ortalama */
+}
+
+/* Header İçeriği */
+.header-content {
+    text-align: center; /* H1'i ortalar */
+    flex: 1; /* İçerik genişliğini doldurur */
+}
+
+/* Sadece h1 için */
+.header-content h1 {
+    text-align: center; 
+    margin: 0 auto; 
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+}
+
+/* Logo (Circle) */
+.logo {
+    position: absolute; /* Circle'ı bağımsız konumlandırmak için */
+    right: 20px; /* Sağdan boşluk */
+    top: 50%; /* Dikeyde ortala */
+    transform: translateY(-50%); /* Tam dikey ortalama */
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    background-color: #838383;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+}
+
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #ffffff; /* Sidebar arka planı */
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: transform 0.3s ease-in-out; 
+    z-index: 1000;
+
+    
+}
+
+/* Sidebar Gizlenmiş Durum */
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+/* Sidebar Bağlantı Stilleri */
+.sidebar .nav-link {
+    color: #000;
+    font-weight: bold;
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #f0f0f0; /* Hover rengi */
+    transition: background-color 0.3s;
+}
+.sidebar .nav-link.active {
+   
+    border-left: 5px solid #2f217e;; /* Sol tarafta vurgu çizgisi */
+}
+
+/* Sidebar Toggle Butonu */
+.sidebar .sidebar-toggle-btn {
+    
+    border: none; /* Çerçeve yok */
+    font-size: 1.5rem; /* Büyük simge */
+    cursor: pointer; /* Tıklanabilir */
+    position: absolute; /* Sidebar içinde sabit */
+    top: 10px; /* Üstten mesafe */
+    right: -40px; /* Sidebar dışında konum */
+    background-color: #ffffff;
+    
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ana İçerik */
+main {
+    transition: margin-left 0.3s ease-in-out; /* Sidebar açılıp kapanınca içerik kayması */
+    margin-left: 250px; /* Varsayılan sidebar genişliği */
+}
+
+main.collapsed {
+    margin-left: 0; /* Sidebar gizlendiğinde içerik sola kayar */
+}
+
+/* Dashboard İçerik Alanı */
+.dashboard {
+    padding: 20px;
+    
+}
+
+.dashboard h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #388e3c;
+    text-align: center;
+}
+
+ 
+/* product oriented card  */
+.card {
+    background: linear-gradient(135deg, #a0c0d4, #7a7a7a);
+    color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-content {
+    flex: 1;
+}
+
+.card-content h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+    color: #fff;
+}
+
+.card-content h1 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+    font-weight: bold;
+    color: #fff;
+}
+
+.card-content p {
+    font-size: 1rem;
+    margin: 0;
+    color: #fff;
+}
+
+.card-icon {
+    font-size: 2rem;
+    color: #fff;
+}
+
+                                                              /* ----------MÜŞTERİ ODAKLI------- */
+.chart-container {
+    margin: 0 auto; /* Ortalamak için */
+    padding: 10px;
+    box-sizing: border-box;
+    
+}
+
+canvas {
+    display: block; 
+}
+
+/* Genişlik ve Yükseklik Ayarları */
+#responseTimeChart {
+    width: 100%; /* Tam genişlik */
+    height: 400px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color:#ffffff;
+}
+#customerSatisfactionChart{
+    width: 100%; /* Tam genişlik */
+    height: 400px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color:#ffffff;
+}
+
+
+/* Customer Request Accuracy Chart */
+#customerRequestAccuracyChart {
+    width: 100%; /* Tam genişlik */
+    height: 400px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color:#ffffff;
+}
+
+/* Request Fulfillment Chart doğru yanlış*/
+#requestFulfillmentChart {
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color:#ffffff;
+}
+
+
+                                                      
+                                                      /* ----------KAYNAK KULLANIMI------- */
+#ecoMaterialsChart {
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+
+#capacityUtilizationChart {
+    width: 100%; /* Tam genişlik */
+    height: 400px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+
+#wasteReuseChart {
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+
+#rareProductsChart {
+    width: 110%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+
+.recyclable-chart-container {
+    padding: 30px 0; /* Yukarı ve aşağı boşluk */
+    text-align: center; /* Yatayda ortalama */
+}
+
+#recyclablePackagingChart {
+    margin: 0 auto; /* Grafiği merkeze hizalar */
+    width: 80%; /* Parent genişliğinin %80'i */
+    max-width: 600px; /* Maksimum genişlik */
+    height: 300px; /* Sabit yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+#wasteReductionChart {
+    margin: 0 auto; /* Grafiği merkeze hizalar */
+    width: 100%; /* Parent genişliğinin %80'i */
+    height: 400px; /* Sabit yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+#emsExistenceChart{
+    margin: 0 auto; /* Grafiği merkeze hizalar */
+    width: 100%; /* Parent genişliğinin %80'i */
+    height: 400px; /* Sabit yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+
+
+/* Renewable Energy Chart */
+#renewableEnergyChart {
+    margin: 0 auto; /* Grafiği merkeze hizalar */
+    width: 100%; /* Tam genişlik */
+    height: 400px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+
+/* Water Consumption Chart */
+#waterConsumptionChart {
+    margin: 0 auto; /* Grafiği merkeze hizalar */
+    width: 100%; /* Tam genişlik */
+    height: 400px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+
+/* Eco Innovations Chart */
+#ecoInnovationsChart {
+    margin: 0 auto; /* Grafiği merkeze hizalar */
+    width: 100%; /* Tam genişlik */
+    height: 400px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+
+/* GHG Emissions Chart */
+#ghgEmissionsChart {
+    margin: 0 auto; /* Grafiği merkeze hizalar */
+    width: 100%; /* Tam genişlik */
+    height: 400px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+
+
+                                                              /* ----------TESLİMAT ODAKLI------- */
+#deliveryPieChart {
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color:#ffffff;
+}
+
+#distributionBarChart {
+    width: 100%; /* Tam genişlik */
+    height: 400px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color:#ffffff;
+}
+
+#onTimeBarChart {
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color:#ffffff;
+}
+#trackingStatusBarChart {
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color:#ffffff;
+}
+#flowLineChart {
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color:#ffffff;
+}
+#priorityStackedBarChart {
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color:#ffffff;
+}
+                                                       /* ----------XXXXXXXXXXXXXXXXXXX------ */
+#productWasteChart {
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color:#ffffff;
+}
+#salesAccuracyChart {
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color:#ffffff;
+}
+
+#meterCompatibilityChart {
+    margin: 0 auto; /* Grafiği merkeze hizalar */
+    width: 80%; /* Parent genişliğinin %80'i */
+    max-width: 500px; /* Maksimum genişlik */
+    height: 300px; /* Sabit yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+
+                                                        /* ----------FİRMA ODAKLI------- */
+#previousCurrentCustomersBarChart {
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+#sustainabilityProjectsBarChart {
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+#investmentReturnsChart{
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+#rdEmployeesBudgetChart{
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+#rdBudgetProjectsScatter{
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+#ordersComparisonBarChart{
+    width: 100%; /* Tam genişlik */
+    height: 300px; /* Yükseklik */
+    border: 1px solid #dcdcdc; /* Çerçeve rengi */
+    border-radius: 4px; /* Köşelerin yuvarlanması */
+    box-shadow: 0 2px 4px rgba(189, 189, 189, 0.863); /* Gölge efekti */
+    background-color: #ffffff; /* Beyaz arka plan */
+}
+
+
